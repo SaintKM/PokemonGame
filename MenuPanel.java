@@ -13,7 +13,7 @@ public class MenuPanel extends MyPanel
         JLabel label = new JLabel("[In World Map]");
         label.setBounds(260, 160, 300, 30);
         label.setFont(mg.getGameFont(20));
-        label.setForeground(Color.black);
+        label.setForeground(new Color(204, 0, 0));
 
         JButton fightPokemonBtn = new JButton("Fight Wild Pokemon");
         JButton bagBtn = new JButton("Bag");
@@ -22,12 +22,12 @@ public class MenuPanel extends MyPanel
         JButton exitBtn = new JButton("Exit Game");
         ImagePanel bgImg = loadImageFile("menubg");
         
-        fightPokemonBtn.setBounds(250, 200, 250, 30);
-        bagBtn.setBounds(250, 240, 250, 30);
-        pokeBagBtn.setBounds(250, 280, 250, 30);
-        healPokemonBtn.setBounds(250, 320, 250, 30);
+        fightPokemonBtn.setBounds(250, 200, 280, 30);
+        bagBtn.setBounds(250, 240, 280, 30);
+        pokeBagBtn.setBounds(250, 280, 280, 30);
+        healPokemonBtn.setBounds(250, 320, 280, 30);
         bgImg.setBounds(0, 0, 800, 600);
-        exitBtn.setBounds(250, 360, 250, 30);
+        exitBtn.setBounds(250, 360, 280, 30);
         this.add(label, 1, 0);
         this.add(fightPokemonBtn, 1, 0);
         this.add(bagBtn, 1, 0);
@@ -75,8 +75,10 @@ public class MenuPanel extends MyPanel
                 mg.dispatchEvent(new WindowEvent(mg, WindowEvent.WINDOW_CLOSING));
             }
         });
-    }
 
+        setStyle(null, null);
+    }
+    
     public ImagePanel loadImageFile(String imgName)
     {
         ImagePanel bgPanel = new ImagePanel();

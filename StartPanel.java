@@ -12,14 +12,15 @@ public class StartPanel extends MyPanel
         JLabel label = new JLabel("Enter player's name:  ");
         JTextField textField = new JTextField();
         JButton btn = new JButton("Confirm");
-        label.setBounds(200, 200, 300, 30);
-        label.setFont(mg.getGameFont(20));
-        label.setForeground(Color.WHITE);
+        label.setBounds(180, 200, 300, 30);
         textField.setBounds(240, 240, 200, 30);
-        btn.setBounds(280, 280, 80, 30);
+        btn.setBounds(280, 280, 100, 30);
         this.add(label, 0);
         this.add(textField, 0);
         this.add(btn, 0);
+
+        setStyle(null, 20);
+        label.setForeground(Color.WHITE);
 
         textField.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
@@ -38,5 +39,6 @@ public class StartPanel extends MyPanel
                 mg.changePanel(new ConfirmPanel(mg));
             }
         });
+        
     }
 }

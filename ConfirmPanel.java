@@ -13,7 +13,6 @@ public class ConfirmPanel extends MyPanel
         JLabel playerNameLabel = new JLabel(mg.trainer.getName());
         playerNameLabel.setBounds(50, 50, 300, 30);
         playerNameLabel.setFont(mg.getGameFont(20));
-        playerNameLabel.setForeground(Color.WHITE);
 
         JButton nextButton = new JButton("next");
         nextButton.setBounds(50, 150, 300, 30);
@@ -22,6 +21,9 @@ public class ConfirmPanel extends MyPanel
 
         this.add(playerNameLabel);
         this.add(nextButton);
+
+        setStyle(null, 24);
+        playerNameLabel.setForeground(Color.WHITE);
 
         nextButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)

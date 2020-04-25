@@ -3,16 +3,15 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 
 public class FightPokemonPanel extends MyPanel
 {
-    private Trainer trainer;
     private Pokemon ally;
     private Pokemon enemy;
     public FightPokemonPanel(MainGame mg, Pokemon ally, Pokemon enemy)
     {
         super(null);
-        this.trainer = mg.trainer;
         this.ally = ally;
         this.enemy = enemy;
         this.setLayout(null);
@@ -24,10 +23,10 @@ public class FightPokemonPanel extends MyPanel
         JLabel allyStatus2 = new JLabel(ally.getPpStat());
         JLabel allyStatus3 = new JLabel(ally.getLvStat());
         ImagePanel allyImg = loadImageFile(ally.getOrigin());
-        allyName.setBounds(100,300,100,30);
-        allyStatus1.setBounds(100,330,100,30);
-        allyStatus2.setBounds(100,360,100,30);
-        allyStatus3.setBounds(100,390,100,30);
+        allyName.setBounds(120,320,100,20);
+        allyStatus1.setBounds(100,340,100,20);
+        allyStatus2.setBounds(100,360,100,20);
+        allyStatus3.setBounds(100,380,150,20);
         allyImg.setBounds(100, 200, 100, 100);
         this.add(allyName, 1, 0);
         this.add(allyStatus1, 1, 0);
@@ -40,21 +39,22 @@ public class FightPokemonPanel extends MyPanel
         JLabel enemyStatus1 = new JLabel(enemy.getHpStat());
         JLabel enemyStatus2 = new JLabel("LV: " + enemy.level);
         ImagePanel enemyImg = loadImageFile(enemy.getOrigin());
-        enemyName.setBounds(600,50,100,30);
-        enemyStatus1.setBounds(600,80,100,30);
-        enemyStatus2.setBounds(600,110,100,30);
+        enemyName.setBounds(620,40,100,20);
+        enemyStatus1.setBounds(600,60,100,20);
+        enemyStatus2.setBounds(600,80,100,20);
         enemyImg.setBounds(600, 140, 100, 100);
         this.add(enemyName, 1, 0);
         this.add(enemyStatus1, 1, 0);
         this.add(enemyStatus2, 1, 0);
         this.add(enemyImg, 2, 0);
+        
         //<---------------Action Button---------------------->
         JButton attack = new JButton("Attack");
         JButton bag = new JButton("Bag");
         JButton runaway = new JButton("Run Away");
-        attack.setBounds(600, 400, 100, 30);
-        bag.setBounds(600, 440, 100, 30);
-        runaway.setBounds(600, 480, 100, 30);
+        attack.setBounds(600, 400, 120, 30);
+        bag.setBounds(600, 440, 120, 30);
+        runaway.setBounds(600, 480, 120, 30);
         this.add(attack);
         this.add(bag);
         this.add(runaway);
@@ -140,6 +140,10 @@ public class FightPokemonPanel extends MyPanel
                 mg.changePanel(new MenuPanel(mg));
             }
         });
+
+        setStyle(null, null);
+        allyName.setForeground(new Color(255, 0, 0));
+        enemyName.setForeground(new Color(255, 0, 0));
     }
 
     public ImagePanel loadImageFile(String imgName)

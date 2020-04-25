@@ -162,7 +162,8 @@ public class BagPanel extends MyPanel
                     mg.changePanel(new MenuPanel(mg));
             }
         });
-
+        
+        setStyle(null, null);
         
     }
 

@@ -41,7 +41,7 @@ public class MainGame extends JFrame
 
     public Font getGameFont(int fontsize)
     {
-        return new Font("Courier", Font.PLAIN, fontsize);
+        return new Font("Arial", Font.BOLD, fontsize);
     }
 
     public void changePanel(JLayeredPane newPanel)

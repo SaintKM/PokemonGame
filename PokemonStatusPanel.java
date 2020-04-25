@@ -26,12 +26,12 @@ public class PokemonStatusPanel extends MyPanel
             bagSize = 6;
         for(int i = 0; i < bagSize; i++){
             Pokemon p = pokemonbag.get(i);
-            JLabel pokemonNameLv = new JLabel(p.getName() + " " + p.getLvStat());
-            JLabel pokemonHpPp = new JLabel(p.getHpStat() + " " + p.getPpStat());
+            JLabel pokemonNameLv = new JLabel(p.getName() + "  " + p.getLvStat());
+            JLabel pokemonHpPp = new JLabel(p.getHpStat() + "  " + p.getPpStat());
             ImagePanel pokemonImg = loadImageFile(pokemonbag.get(i).getOrigin());
-            pokemonImg.setBounds(90, 95+(70*i), 50, 50);
-            pokemonNameLv.setBounds(150, 100+(70*i), 200, 20);
-            pokemonHpPp.setBounds(150, 120+(70*i), 200, 20);
+            pokemonImg.setBounds(90, 55+(70*i), 50, 50);
+            pokemonNameLv.setBounds(150, 60+(70*i), 250, 20);
+            pokemonHpPp.setBounds(150, 80+(70*i), 250, 20);
             pokemonName.add(pokemonNameLv);
             this.add(pokemonNameLv, 2, 0);
             this.add(pokemonHpPp, 2, 0);
@@ -39,7 +39,7 @@ public class PokemonStatusPanel extends MyPanel
         }
 
         JButton renameBtn = new JButton("Rename Pokemon");
-        renameBtn.setBounds(500, 100, 150, 30);
+        renameBtn.setBounds(500, 100, 180, 30);
         this.add(renameBtn);
 
         JButton backBtn = new JButton("back");
@@ -48,22 +48,22 @@ public class PokemonStatusPanel extends MyPanel
 
         //<--------------Choose Pokemon------------------------->
         JLabel label1 = new JLabel("Choose Pokemon to Rename.");
-        label1.setBounds(490, 160, 200, 30);
+        label1.setBounds(490, 160, 240, 30);
         label1.setVisible(false);
         this.add(label1);
         JTextField textField = new JTextField(24);
-        textField.setBounds(500, 200, 200, 30);
+        textField.setBounds(500, 200, 240, 30);
         textField.setVisible(false);
         this.add(textField);
         JButton confirmBtn = new JButton("confirm");
-        confirmBtn.setBounds(550, 240, 100, 30);
+        confirmBtn.setBounds(550, 240, 120, 30);
         confirmBtn.setVisible(false);
         this.add(confirmBtn);
         //<-----Display Pokemon----->
         ArrayList<JButton> pokemonChooser = new ArrayList<JButton>();
         for(int i = 0; i < bagSize; i++){
             JButton pokemonNo = new JButton(pokemonbag.get(i).getName());
-            pokemonNo.setBounds(500, 160+40*(i+1), 150, 30);
+            pokemonNo.setBounds(520, 160+40*(i+1), 150, 30);
             pokemonNo.setVisible(false);
             this.add(pokemonNo);
             pokemonChooser.add(pokemonNo);
@@ -124,6 +124,8 @@ public class PokemonStatusPanel extends MyPanel
                 mg.changePanel(new MenuPanel(mg));
             }
         });
+        
+        setStyle(null, null);
     }
 
     public ImagePanel loadImageFile(String imgName)

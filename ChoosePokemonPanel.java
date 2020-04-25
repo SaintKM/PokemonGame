@@ -27,7 +27,7 @@ public class ChoosePokemonPanel extends MyPanel
         
         System.out.println("Pokemon size: " + mg.trainer.getPokemonBag().size());
         JLabel label = new JLabel("Choose Pokemon to Fight");
-        label.setBounds(75, 200, 150, 30);
+        label.setBounds(60, 200, 300, 30);
         this.add(label);
 
         JLabel label2 = new JLabel(" <Encounter> ");
@@ -40,7 +40,7 @@ public class ChoosePokemonPanel extends MyPanel
         JLabel enemyLabel = new JLabel(wildPokemon.get(rand).getName());
         ImagePanel enemyImg = loadImageFile(wildPokemon.get(rand).getOrigin());
 
-        enemyLabel.setBounds(500, 200, 100, 30);
+        enemyLabel.setBounds(520, 200, 100, 30);
         enemyImg.setBounds(500, 240, 150, 150);
         this.add(enemyImg, 2, 0);
         this.add(enemyLabel, 1, 0);
@@ -73,7 +73,7 @@ public class ChoosePokemonPanel extends MyPanel
         //<-------------------------------------------------------------------------->
 
         JButton cancelBtn = new JButton("cancel");
-        cancelBtn.setBounds(300, 400, 100, 25);
+        cancelBtn.setBounds(310, 400, 100, 25);
         this.add(cancelBtn);
         cancelBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
@@ -82,6 +82,8 @@ public class ChoosePokemonPanel extends MyPanel
                 mg.changePanel(new MenuPanel(mg));
             }
         });
+        
+        setStyle(null, null);
     }
 
     public ImagePanel loadImageFile(String imgName)
