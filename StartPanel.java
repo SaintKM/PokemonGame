@@ -1,21 +1,25 @@
 //StartPanel.java
 import javax.swing.*;
+
+import java.awt.*;
 import java.awt.event.*;
 
-public class StartPanel extends JPanel
+public class StartPanel extends MyPanel
 {
     public StartPanel(MainGame mg)
     {
-        this.setLayout(null);
+        super(null);
         JLabel label = new JLabel("Enter player's name:  ");
-        JTextField textField = new JTextField(24);
+        JTextField textField = new JTextField();
         JButton btn = new JButton("Confirm");
-        label.setBounds(200, 200, 200, 30);
+        label.setBounds(200, 200, 300, 30);
+        label.setFont(mg.getGameFont(20));
+        label.setForeground(Color.WHITE);
         textField.setBounds(240, 240, 200, 30);
         btn.setBounds(280, 280, 80, 30);
-        this.add(label);
-        this.add(textField);
-        this.add(btn);
+        this.add(label, 0);
+        this.add(textField, 0);
+        this.add(btn, 0);
 
         textField.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)

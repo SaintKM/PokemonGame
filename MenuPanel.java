@@ -1,31 +1,40 @@
 //MenuPanel.java
+import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MenuPanel extends JPanel
+public class MenuPanel extends MyPanel
 {
     public MenuPanel(MainGame mg)
     {
-        this.setLayout(null);
+        super(null);
+
         JLabel label = new JLabel("[In World Map]");
+        label.setBounds(260, 160, 300, 30);
+        label.setFont(mg.getGameFont(20));
+        label.setForeground(Color.black);
+
         JButton fightPokemonBtn = new JButton("Fight Wild Pokemon");
         JButton bagBtn = new JButton("Bag");
         JButton pokeBagBtn = new JButton("PokemonBag");
         JButton healPokemonBtn = new JButton("Heal Pokemon in PokemonCenter");
         JButton exitBtn = new JButton("Exit Game");
-        label.setBounds(250, 160, 250, 30);
+        ImagePanel bgImg = loadImageFile("menubg");
+        
         fightPokemonBtn.setBounds(250, 200, 250, 30);
         bagBtn.setBounds(250, 240, 250, 30);
         pokeBagBtn.setBounds(250, 280, 250, 30);
         healPokemonBtn.setBounds(250, 320, 250, 30);
+        bgImg.setBounds(0, 0, 800, 600);
         exitBtn.setBounds(250, 360, 250, 30);
-        this.add(label);
-        this.add(fightPokemonBtn);
-        this.add(bagBtn);
-        this.add(pokeBagBtn);
-        this.add(healPokemonBtn);
-        this.add(exitBtn);
+        this.add(label, 1, 0);
+        this.add(fightPokemonBtn, 1, 0);
+        this.add(bagBtn, 1, 0);
+        this.add(pokeBagBtn, 1, 0);
+        this.add(healPokemonBtn, 1, 0);
+        this.add(exitBtn, 1, 0);
+        this.add(bgImg, 0, 0);
 
         fightPokemonBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
@@ -66,5 +75,15 @@ public class MenuPanel extends JPanel
                 mg.dispatchEvent(new WindowEvent(mg, WindowEvent.WINDOW_CLOSING));
             }
         });
+    }
+
+    public ImagePanel loadImageFile(String imgName)
+    {
+        ImagePanel bgPanel = new ImagePanel();
+        String filePath = "image/" + imgName + ".png";
+        File img = new File(filePath);
+        bgPanel.displayImage(img, 800, 600);
+        bgPanel.setOpaque(true);
+        return bgPanel;
     }
 }

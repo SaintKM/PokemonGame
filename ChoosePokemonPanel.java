@@ -1,17 +1,17 @@
 //ChoosePokemonPanel.java
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
-public class ChoosePokemonPanel extends JPanel
+public class ChoosePokemonPanel extends MyPanel
 {
     private Trainer trainer;
     private ArrayList<Pokemon> wildPokemon;
     public ChoosePokemonPanel(MainGame mg)
     {
+        super(null);
         this.trainer = mg.trainer;
-        this.setLayout(null);
 
         fightWildPokemon(mg);
     }
@@ -31,16 +31,19 @@ public class ChoosePokemonPanel extends JPanel
         this.add(label);
 
         JLabel label2 = new JLabel(" <Encounter> ");
-        label2.setBounds(300, 250, 100, 30);
+        label2.setBounds(310, 250, 100, 30);
         this.add(label2);
 
         //<---------Enemy Pokemon------------------------------------------------->
         int rand = (int)(Math.random() * wildPokemon.size());
         System.out.println("Wild Pokemon encounter! Enconter <" + wildPokemon.get(rand) + ">.");
         JLabel enemyLabel = new JLabel(wildPokemon.get(rand).getName());
+        ImagePanel enemyImg = loadImageFile(wildPokemon.get(rand).getOrigin());
 
-        enemyLabel.setBounds(500, 250, 100, 30);
-        this.add(enemyLabel);
+        enemyLabel.setBounds(500, 200, 100, 30);
+        enemyImg.setBounds(500, 240, 150, 150);
+        this.add(enemyImg, 2, 0);
+        this.add(enemyLabel, 1, 0);
         
         //<---------Ally Pokemon-------------------------------------------------->
         ArrayList<Pokemon> pokemonbag = trainer.getPokemonBag();
@@ -79,5 +82,15 @@ public class ChoosePokemonPanel extends JPanel
                 mg.changePanel(new MenuPanel(mg));
             }
         });
+    }
+
+    public ImagePanel loadImageFile(String imgName)
+    {
+        ImagePanel bgPanel = new ImagePanel();
+        String filePath = "image/" + imgName + ".png";
+        File img = new File(filePath);
+        bgPanel.displayImage(img, 150, 150);
+        bgPanel.setOpaque(true);
+        return bgPanel;
     }
 }

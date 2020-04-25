@@ -8,11 +8,17 @@ public class Pidgey extends Pokemon
     public Pidgey(String name)
     {
         super(name);
+        this.originName = "Pidgey";
         skill = new ArrayList<String>();
         skill.add("Tackle");
         skill.add("Wing Attack");
         skill.add("Fly");
         skill.add("Gust");
+    }
+
+    public String getOrigin()
+    {
+        return this.originName;
     }
 
     public void showSkill()

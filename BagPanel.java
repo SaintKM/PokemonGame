@@ -1,17 +1,17 @@
 //BagPanel.java
+import java.io.*;
 import java.util.*;
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class BagPanel extends JPanel
+public class BagPanel extends MyPanel
 {
     private HashMap<String, Integer> bag;
     private Pokemon ally;
     public BagPanel(MainGame mg, Pokemon ally, Pokemon enemy)
     {
+        super(null);
         this.bag = mg.trainer.getBag();
-        this.setLayout(null);
         setPokemon(ally);
         JLabel label = new JLabel("Choose Item");
         label.setBounds(300, 160, 100, 30);
@@ -21,15 +21,27 @@ public class BagPanel extends JPanel
         JButton rcBtn = new JButton("Rare Candy: " + bag.get("Rare Candy"));
         JButton pokeBallBtn = new JButton("PokeBall: " + bag.get("PokeBall"));
         JButton closeBtn = new JButton("close");
+        ImagePanel potionImg = loadImageFile("potion");
+        ImagePanel etherImg = loadImageFile("ether");
+        ImagePanel rcImg = loadImageFile("rare-candy");
+        ImagePanel pokeBallImg = loadImageFile("poke-ball");
         potionBtn.setBounds(300, 200, 150, 30);
+        potionImg.setBounds(266, 200, 32, 32);
         etherBtn.setBounds(300, 240, 150, 30);
+        etherImg.setBounds(266, 240, 32, 32);
         rcBtn.setBounds(300, 280, 150, 30);
+        rcImg.setBounds(266, 280, 32, 32);
         pokeBallBtn.setBounds(300, 320, 150, 30);
+        pokeBallImg.setBounds(266, 320, 32, 32);
         closeBtn.setBounds(325, 360, 100, 30);
-        this.add(potionBtn);
-        this.add(etherBtn);
-        this.add(rcBtn);
-        this.add(pokeBallBtn);
+        this.add(potionBtn, 1, 0);
+        this.add(potionImg, 2, 0);
+        this.add(etherBtn, 1, 0);
+        this.add(etherImg, 2, 0);
+        this.add(rcBtn, 1, 0);
+        this.add(rcImg, 2, 0);
+        this.add(pokeBallBtn, 1, 0);
+        this.add(pokeBallImg, 2, 0);
         this.add(closeBtn);
         
         //<--------------Choose Pokemon------------------------->
@@ -152,6 +164,16 @@ public class BagPanel extends JPanel
         });
 
         
+    }
+
+    public ImagePanel loadImageFile(String imgName)
+    {
+        ImagePanel bgPanel = new ImagePanel();
+        String filePath = "image/" + imgName + ".png";
+        File img = new File(filePath);
+        bgPanel.displayImage(img, 32, 32);
+        bgPanel.setOpaque(true);
+        return bgPanel;
     }
 
     public void displayPokemon(JLabel label, ArrayList<JButton> pokemonChooser)

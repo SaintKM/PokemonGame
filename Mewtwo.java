@@ -8,11 +8,17 @@ public class Mewtwo extends Pokemon
     public Mewtwo(String name)
     {
         super(name);
+        this.originName = "Mewtwo";
         skill = new ArrayList<String>();
         skill.add("Psycho Cut");
         skill.add("Phychic");
         skill.add("Self-Destruct");
         skill.add("Future Sight");
+    }
+
+    public String getOrigin()
+    {
+        return this.originName;
     }
 
     public void showSkill()

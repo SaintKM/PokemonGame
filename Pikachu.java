@@ -1,5 +1,4 @@
 //Pikachu.java
-import java.io.*;
 import java.util.*;
 
 public class Pikachu extends Pokemon
@@ -8,11 +7,17 @@ public class Pikachu extends Pokemon
     public Pikachu(String name)
     {
         super(name);
+        this.originName = "Pikachu";
         skill = new ArrayList<String>();
         skill.add("Thunder Punch");
         skill.add("Tail Whip");
         skill.add("Thunderbolt");
         skill.add("Thunder");
+    }
+
+    public String getOrigin()
+    {
+        return this.originName;
     }
 
     public void showSkill()

@@ -1,17 +1,17 @@
 //FightPokemonPanel.java
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 
-public class FightPokemonPanel extends JPanel
+public class FightPokemonPanel extends MyPanel
 {
     private Trainer trainer;
     private Pokemon ally;
     private Pokemon enemy;
     public FightPokemonPanel(MainGame mg, Pokemon ally, Pokemon enemy)
     {
+        super(null);
         this.trainer = mg.trainer;
         this.ally = ally;
         this.enemy = enemy;
@@ -23,25 +23,31 @@ public class FightPokemonPanel extends JPanel
         JLabel allyStatus1 = new JLabel(ally.getHpStat());
         JLabel allyStatus2 = new JLabel(ally.getPpStat());
         JLabel allyStatus3 = new JLabel(ally.getLvStat());
+        ImagePanel allyImg = loadImageFile(ally.getOrigin());
         allyName.setBounds(100,300,100,30);
         allyStatus1.setBounds(100,330,100,30);
         allyStatus2.setBounds(100,360,100,30);
         allyStatus3.setBounds(100,390,100,30);
-        this.add(allyName);
-        this.add(allyStatus1);
-        this.add(allyStatus2);
-        this.add(allyStatus3);
+        allyImg.setBounds(100, 200, 100, 100);
+        this.add(allyName, 1, 0);
+        this.add(allyStatus1, 1, 0);
+        this.add(allyStatus2, 1, 0);
+        this.add(allyStatus3, 1, 0);
+        this.add(allyImg, 2, 0);
 
         //<-----Enemy----->
         JLabel enemyName = new JLabel(enemy.getName());
         JLabel enemyStatus1 = new JLabel(enemy.getHpStat());
         JLabel enemyStatus2 = new JLabel("LV: " + enemy.level);
+        ImagePanel enemyImg = loadImageFile(enemy.getOrigin());
         enemyName.setBounds(600,50,100,30);
         enemyStatus1.setBounds(600,80,100,30);
         enemyStatus2.setBounds(600,110,100,30);
-        this.add(enemyName);
-        this.add(enemyStatus1);
-        this.add(enemyStatus2);
+        enemyImg.setBounds(600, 140, 100, 100);
+        this.add(enemyName, 1, 0);
+        this.add(enemyStatus1, 1, 0);
+        this.add(enemyStatus2, 1, 0);
+        this.add(enemyImg, 2, 0);
         //<---------------Action Button---------------------->
         JButton attack = new JButton("Attack");
         JButton bag = new JButton("Bag");
@@ -136,6 +142,15 @@ public class FightPokemonPanel extends JPanel
         });
     }
 
+    public ImagePanel loadImageFile(String imgName)
+    {
+        ImagePanel bgPanel = new ImagePanel();
+        String filePath = "image/" + imgName + ".png";
+        File img = new File(filePath);
+        bgPanel.displayImage(img, 100, 100);
+        bgPanel.setOpaque(true);
+        return bgPanel;
+    }
 
     public void updateStatus(JLabel allyStatus1, JLabel allyStatus2, JLabel allyStatus3, JLabel enemyStatus1)
     {

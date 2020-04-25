@@ -1,5 +1,4 @@
 //MagiKarp.java
-import java.io.*;
 import java.util.*;
 
 public class MagiKarp extends Pokemon
@@ -9,11 +8,17 @@ public class MagiKarp extends Pokemon
     {
         super(name);
         this.atk = 1;
+        this.originName = "MagiKarp";
         skill = new ArrayList<String>();
         skill.add("Splash");
         skill.add("Tackle");
         skill.add("Splash");
         skill.add("Tackle");
+    }
+
+    public String getOrigin()
+    {
+        return this.originName;
     }
 
     public void showSkill()

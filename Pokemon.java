@@ -9,6 +9,7 @@ public abstract class Pokemon
     protected int leastPP = 5;
     protected int leastATK = 5;
     protected int leastDEF = 3;
+    protected String originName;
 
     public Pokemon(String name)
     {
@@ -23,6 +24,8 @@ public abstract class Pokemon
         atk = (int)Math.random() + leastATK;
         def = (int)(Math.random() * 10) + leastDEF;
     }
+
+    public abstract String getOrigin();
 
     public void damaged(int damage)
     {

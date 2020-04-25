@@ -1,22 +1,25 @@
 import javax.swing.*;
-
+import java.io.*;
 import java.util.*;
-import java.awt.*;
 import java.awt.event.*;
 
 //PokemonStatusPanel.java
 
-public class PokemonStatusPanel extends JPanel
+public class PokemonStatusPanel extends MyPanel
 {
     private Pokemon pokemon;
     private JLabel chooseLabel;
     private JButton chooseBtn;
     public PokemonStatusPanel(MainGame mg)
     {
-        this.setLayout(null);
+        super(null);
         //<--------------Display Pokemon----------------------->
         ArrayList<Pokemon> pokemonbag = mg.trainer.getPokemonBag();
         ArrayList<JLabel> pokemonName = new ArrayList<JLabel>();
+
+        for(int i = 0; i < pokemonbag.size(); i++){
+            loadImageFile(pokemonbag.get(i).getName());
+        }
         
         int bagSize = pokemonbag.size();
         if(pokemonbag.size() > 6)
@@ -25,11 +28,14 @@ public class PokemonStatusPanel extends JPanel
             Pokemon p = pokemonbag.get(i);
             JLabel pokemonNameLv = new JLabel(p.getName() + " " + p.getLvStat());
             JLabel pokemonHpPp = new JLabel(p.getHpStat() + " " + p.getPpStat());
-            pokemonNameLv.setBounds(150, 100+(60*i), 200, 20);
-            pokemonHpPp.setBounds(150, 120+(60*i), 200, 20);
+            ImagePanel pokemonImg = loadImageFile(pokemonbag.get(i).getOrigin());
+            pokemonImg.setBounds(90, 95+(70*i), 50, 50);
+            pokemonNameLv.setBounds(150, 100+(70*i), 200, 20);
+            pokemonHpPp.setBounds(150, 120+(70*i), 200, 20);
             pokemonName.add(pokemonNameLv);
-            this.add(pokemonNameLv);
-            this.add(pokemonHpPp);
+            this.add(pokemonNameLv, 2, 0);
+            this.add(pokemonHpPp, 2, 0);
+            this.add(pokemonImg, 2, 0);
         }
 
         JButton renameBtn = new JButton("Rename Pokemon");
@@ -118,6 +124,16 @@ public class PokemonStatusPanel extends JPanel
                 mg.changePanel(new MenuPanel(mg));
             }
         });
+    }
+
+    public ImagePanel loadImageFile(String imgName)
+    {
+        ImagePanel bgPanel = new ImagePanel();
+        String filePath = "image/" + imgName + ".png";
+        File img = new File(filePath);
+        bgPanel.displayImage(img, 50, 50);
+        bgPanel.setOpaque(true);
+        return bgPanel;
     }
 
     public void displayPokemon(ArrayList<JButton> pokemonChooser, JLabel label)
